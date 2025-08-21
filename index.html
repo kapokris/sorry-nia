@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry Nia 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 3em;
+            color: #ff4d6d;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.1);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #444;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background: #ff1a4c;
+            transform: scale(1.1);
+        }
+
+        .note {
+            display: none;
+            background: #fff5f5;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 6px solid #ff4d6d;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #444;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .note h3 {
+            margin: 0 0 10px;
+            color: #ff4d6d;
+        }
+
+        .media-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            justify-items: center;
+        }
+
+        .media-container iframe,
+        .media-container img {
+            width: 90%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .coffee-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .coffee-section img {
+            width: 70%;
+            max-width: 300px;
+            border-radius: 15px;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #responseYes,
+        #responseNo {
+            display: none;
+            width: 90%;
+            max-width: 300px;
+            margin: 15px auto;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: left;
+        }
+
+        #responseYes {
+            background: #e6ffe6;
+            border-left: 6px solid #28a745;
+        }
+
+        #responseNo {
+            background: #ffe6e6;
+            border-left: 6px solid #dc3545;
+        }
+
+        .coffee-section button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .coffee-section button:hover {
+            transform: scale(1.05);
+        }
+
+        .coffee-section button.yes {
+            background: #28a745;
+            color: white;
+        }
+
+        .coffee-section button.no {
+            background: #dc3545;
+            color: white;
+        }
+
+        .final-message {
+            background: white;
+            padding: 25px;
+            margin: 40px auto;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .final-message h2 {
+            color: #ff4d6d;
+            font-size: 2em;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.6);
+            animation: floatUp 6s infinite;
+            font-size: 20px;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .button-container button {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+
+            .media-container {
+                grid-template-columns: 1fr;
+            }
+
+            .media-container iframe,
+            .media-container img {
+                max-width: 250px;
+            }
+
+            .coffee-section img {
+                width: 80%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .final-message h2 {
+                font-size: 1.5em;
+            }
+
+            .media-container iframe,
+            .media-container img {
+                max-width: 200px;
+            }
+
+            .coffee-section img {
+                width: 90%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts"></div>
+
+    <div class="container">
+        <h1>I'm Really Sorry Nia 💖</h1>
+        <p>A small way of saying sorry 💖 Click the buttons below…</p>
+
+        <div class="button-container">
+            <button onclick="showNote('note1')">Reason 1</button>
+            <button onclick="showNote('note2')">Reason 2</button>
+            <button onclick="showNote('note3')">Reason 3</button>
+            <button onclick="showNote('note4')">Reason 4</button>
+            <button onclick="showNote('note5')">Reason 5</button>
+        </div>
+
+        <div id="note1" class="note">
+            <h3>You’re Really Important 💖</h3>
+            <p>I don’t want to lose a friend like you just because of something silly I said.</p>
+        </div>
+
+        <div id="note2" class="note">
+            <h3>I Messed Up 😔</h3>
+            <p>I was upset, but I should have handled it better. I don’t want my mistakes to affect our friendship.</p>
+        </div>
+
+        <div id="note3" class="note">
+            <h3>Our Friendship Means A Lot 🌟</h3>
+            <p>I truly value the bond we share, and I don’t ever want small things to ruin it.</p>
+        </div>
+
+        <div id="note4" class="note">
+            <h3>You Deserve Better 🌸</h3>
+            <p>You’ve always been kind and supportive, and I should’ve appreciated that more in the moment.</p>
+        </div>
+
+        <div id="note5" class="note">
+            <h3>I Care About Our Friendship 🤝</h3>
+            <p>I don’t want silly mistakes to ever come between us. Our friendship is too valuable for that.</p>
+        </div>
+
+        <!-- Coffee Snap Section -->
+        <div class="coffee-section">
+            <h2>One of My Favorite Moments ☕📸</h2>
+            <img src="img_latest.jpeg" alt="Starbucks Coffee Snap">
+
+            <p>I want to click more snaps like this with you. Do you want to click more? 🤔</p>
+
+            <div>
+                <button class="yes" onclick="answerYes()">Yes 👍</button>
+                <button class="no" onclick="answerNo()">No 👎</button>
+            </div>
+
+            <div id="responseYes">
+                <h3>Yay! 😃</h3>
+                <p>That makes me really happy! More fun times and snaps ahead 📸✨</p>
+            </div>
+
+            <div id="responseNo">
+                <h3>Oh no 😢</h3>
+                <p>That makes me a little sad… but I’ll still be glad we had this one memory together.</p>
+            </div>
+        </div>
+
+        <!-- Media Section -->
+        <div class="media-container">
+            <img src="img1.jpeg" alt="Memory 1">
+            <img src="img2.jpeg" alt="Memory 2">
+            <iframe src="vid3.mp4"></iframe>
+            <iframe src="vid4.mp4"></iframe>
+        </div>
+
+        <div class="final-message">
+            <h2>So… Will You Forgive Me? 🥺</h2>
+            <p>I’m really sorry, Nia. Our friendship matters more than anything. 💕</p>
+        </div>
+    </div>
+
+    <script>
+        function showNote(noteId) {
+            let notes = document.querySelectorAll('.note');
+            notes.forEach(n => n.style.display = "none");
+            document.getElementById(noteId).style.display = "block";
+        }
+
+        function answerYes() {
+            document.getElementById("responseYes").style.display = "block";
+            document.getElementById("responseNo").style.display = "none";
+        }
+
+        function answerNo() {
+            document.getElementById("responseNo").style.display = "block";
+            document.getElementById("responseYes").style.display = "none";
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 15 + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.querySelector(".hearts").appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+</body>
+
+</html>
